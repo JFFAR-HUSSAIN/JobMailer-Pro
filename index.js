@@ -63,6 +63,13 @@ processedEmails.add(person.email);
         .replace(/{{name}}/g, person.name)
         .replace(/{{company}}/g, person.company);
 
+      const progress = (((i + 1) / emails.length) * 100).toFixed(0);
+
+      console.log("--------------------------------");
+      console.log(`📊 Progress : ${progress}%`);
+      console.log(`📨 Email    : ${i + 1}/${emails.length}`);
+      console.log("--------------------------------");
+
       console.log(`Sending ${i + 1}/${emails.length} to ${person.email}`);
 
       try {
