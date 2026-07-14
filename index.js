@@ -1,6 +1,7 @@
 
 require("dotenv").config();
 
+const readContacts = require("./utils/reader");
 const delay = require("./utils/delay");
 const sendMail = require("./utils/mailSender");
 const fs = require("fs");
@@ -19,14 +20,12 @@ const htmlTemplate = fs.readFileSync(
   "utf8"
 );
 
-const emails = [];
 const processedEmails = new Set();
 
 
-fs.createReadStream("./data/emails.csv")
-  .pipe(csv())
-  .on("data", (row) => emails.push(row))
-  .on("end", async () => {
+(async () => {
+  const emails = await readContacts();
+
     console.log(`Found ${emails.length} email(s)\n`);
 
     for (let i = 0; i < emails.length; i++) {
@@ -36,6 +35,10 @@ fs.createReadStream("./data/emails.csv")
     
  // Invalid email check
 
+         if (!person.email) {
+         console.log("⚠ Empty row skipped");
+         continue;
+        } 
 
        if (!validator.isEmail(person.email)) {
        console.log(`❌ Invalid Email: ${person.email}`);
@@ -99,5 +102,5 @@ processedEmails.add(person.email);
        }
     }
 
-    console.log("🎉 All emails processed.");
-  });
+      console.log("🎉 All emails processed.");
+      })();

@@ -5,7 +5,13 @@ function readExcel(filePath) {
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
 
-  return XLSX.utils.sheet_to_json(sheet);
+  const data = XLSX.utils.sheet_to_json(sheet);
+
+  return data.filter(
+    (row) =>
+      row.email &&
+      String(row.email).trim() !== ""
+  );
 }
 
 module.exports = readExcel;
