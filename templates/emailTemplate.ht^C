@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+
+<body style="font-family:Arial,sans-serif;background:#f5f5f5;padding:20px;">
+
+<div style="max-width:650px;margin:auto;background:white;padding:30px;border-radius:10px;">
+
+<h2>Hello {{name}},</h2>
+
+<p>
+I hope you are doing well.
+</p>
+
+<p>
+My name is <b>Jaffar Hussain</b>. I am a MERN Stack Developer and I am interested in opportunities at {{company}}.</p>
+
+<p>
+Please find my resume attached for your review.
+</p>
+
+<p>
+Thank you for your time and consideration.
+</p>
+
+<br>
+
+Regards,<br>
+<b>Jaffar Hussain</b>
+
+</div>
+
+</body>
+</html>
+nano index.js
+
